@@ -30,24 +30,20 @@ public class Main {
     public static String addName(){
         System.out.println("Введите имя человека: ");
         String name = new Scanner(System.in).nextLine();
-        peopleName.add(name);
         return name;
     }
 
     public static String addNumber(){
         System.out.println("Введите номер человека: ");
         String number = new Scanner(System.in).nextLine();
-        peopleNumber.add(number);
         return number;
     }
     public static void newName(){
-        System.out.println("Введите имя человека: ");
-        String name = new Scanner(System.in).nextLine();
+        String name = addName();
         if(!(peopleNumber.contains(name))){
             System.out.println("Такого имени в телефонной книге нет");
             peopleNumber.add(name);
-            System.out.println("Введите номер телефона для абонента " + name);
-            String number = new Scanner(System.in).nextLine();
+            String number = addNumber();
             peopleNumber.add(number);
             System.out.println("Контакт сохранён!");
         }else {
