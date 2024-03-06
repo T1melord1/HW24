@@ -4,14 +4,14 @@ public class Main {
     private static final Set<String> peopleName = new TreeSet<>();
     private static final Set<String> peopleNumber = new TreeSet<>();
     private static final Map<Set<String>, Set<String>> nameNumber = new HashMap<>();
-    private static final String correctNumber = "\\D";
+    private static final String correctNumber = "\\d";
     public static void main(String[] args) {
         boolean run = true;
         while (run){
 //        System.out.println("Имя добавленного человека: " + addName());
 //        System.out.println("Номер добавленного человека: " + addNumber());
         nameNumber.put(peopleName,peopleNumber);
-        firstName();
+        nameOrNumber();
 
             for (Map.Entry<Set<String>, Set<String>> entry : nameNumber.entrySet()) {
                 System.out.println(entry.getKey() + "" + entry.getValue());
@@ -20,26 +20,26 @@ public class Main {
     }
     public static void nameOrNumber(){
         System.out.println("Введите номер или имя человека");
-        String input = new Scanner(System.in).nextLine();
+        String input = scanner();
         if(input.matches(correctNumber)){
-//            Метод для номера
+        firstNumber();
+        firstName();
         }else{
             firstName();
+            firstNumber();
         }
     }
     public static String addName(){
-        System.out.println("Введите имя человека: ");
-        String name = new Scanner(System.in).nextLine();
-        return name;
+        return new Scanner(System.in).nextLine();
+    }
+    public static String addNumber(){
+        return new Scanner(System.in).nextLine();
     }
 
-    public static String addNumber(){
-        System.out.println("Введите номер человека: ");
-        String number = new Scanner(System.in).nextLine();
-        return number;
+    public static String scanner(){
+        return new Scanner(System.in).nextLine();
     }
     public static void firstName(){
-        String name = addName();
         if(!(peopleName.contains(name))){
             System.out.println("Такого имени в телефонной книге нет и было добавлено");
             peopleName.add(name);
@@ -50,4 +50,17 @@ public class Main {
             System.out.println("Такое имя уже есть в базе!");
         }
         }
-    }
+
+        public static void firstNumber(){
+        if(!(peopleNumber.contains(number))){
+            System.out.println("Такого номера в телефонной книге нет и был добавлен");
+            peopleNumber.add(number);
+            String name = addName();
+            peopleName.add(name);
+            System.out.println("Контакт сохранён!");
+        }
+        else {
+            System.out.println("Такой номер уже есть в базе!");
+        }
+        }
+}
