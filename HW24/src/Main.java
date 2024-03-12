@@ -9,27 +9,19 @@ public class Main {
     public static void main(String[] args) {
         boolean run = true;
         while (run){
-        nameNumber.put(peopleName,peopleNumber);
-
-        start();
+            start();
+            nameNumber.put(peopleName,peopleNumber);
 
         }
     }
-    public static void nameOrNumber(){
-        System.out.println("Введите номер или имя человека");
-        String input = scanner();
+    public static void nameOrNumber(String input){
         if(input.matches(correctNumber)){
             firstNumber(input);
-            System.out.println("Введите имя человека: ");
-            String inputSecond = scanner();
-            secondInputName(inputSecond);
         }else if(input.matches(correctName)){
             firstName(input);
-            System.out.println("Введите номер человека: ");
-            String inputSecond = scanner();
-            secondInputNumber(inputSecond);
+
         }else {
-            print();
+            System.out.println(input + " не является именем или номером телефона");
         }
     }
     public static String scanner(){
@@ -39,11 +31,12 @@ public class Main {
         if(!(peopleNumber.contains(input))){
             System.out.println("Такого номера в телефонной книге нет и был добавлен");
             peopleNumber.add(input);
+            System.out.println("Введите имя человека для абонента: " + input);
+            String inputSecond = scanner();
+            secondInputName(inputSecond);
         }
-        else
-        {
-            System.out.println("Такой номер есть в справочнике");
-            start();
+        else {
+            System.out.println("Телефон: " + input + " уже есть в телефонной книжке");
         }
     }
 
@@ -51,22 +44,20 @@ public class Main {
         if(!(peopleName.contains(input))){
             System.out.println("Такого имени в телефонной книге нет и было добавлено");
             peopleName.add(input);
-
+            System.out.println("Введите номер человека для абонента: " + input);
+            String inputSecond = scanner();
+            secondInputNumber(inputSecond);
         }
-        else
-        {
-            System.out.println("Такое имя есть в справочнике");
-            start();
+        else {
+            System.out.println("Имя: " + input + " уже есть в телефонной книжке");
         }
-        }
+    }
 
         public static void secondInputName(String secondInput){
-            System.out.println("Введите имя человека: ");
             peopleName.add(secondInput);
             System.out.println("Контакт сохранён!");
 
         }    public static void secondInputNumber(String secondInput){
-            System.out.println("Введите номер человека: ");
             peopleNumber.add(secondInput);
             System.out.println("Контакт сохранён!");
         }
@@ -74,8 +65,9 @@ public class Main {
     public static void print(){
         System.out.println("Список телефонных номеров: \n_______________");
         for (Map.Entry<Set<String>, Set<String>> entry : nameNumber.entrySet()) {
-            System.out.println(entry.getKey() + "" + entry.getValue());
+
         }
+
     }
     public static void start(){
         System.out.println("""
@@ -84,7 +76,9 @@ public class Main {
                      LIST. If you want to print number book""");
         String b = scanner();
         if (b.equals("1")){
-            nameOrNumber();
+            System.out.println("Введите номер или имя человека");
+            String input = scanner();
+            nameOrNumber(input);
         } else if (b.equalsIgnoreCase("LIST")) {
             print();
         }
