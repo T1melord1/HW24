@@ -8,10 +8,9 @@ public class Main {
     private static final String correctName = "[А-я]+";
     public static void main(String[] args) {
         boolean run = true;
+        nameNumber.put(peopleName,peopleNumber);
         while (run){
             start();
-            nameNumber.put(peopleName,peopleNumber);
-
         }
     }
     public static void nameOrNumber(String input){
