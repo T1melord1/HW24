@@ -32,7 +32,11 @@ public class Main {
             peopleNumber.add(input);
             System.out.println("Введите имя человека для абонента: " + input);
             String inputSecond = scanner();
+            if(!(peopleName.contains(inputSecond))){
             secondInputName(inputSecond);
+            }else {
+                System.out.println("Имя: " + input + " уже есть в телефонной книжке");
+            }
         }
         else {
             System.out.println("Телефон: " + input + " уже есть в телефонной книжке");
@@ -45,7 +49,11 @@ public class Main {
             peopleName.add(input);
             System.out.println("Введите номер человека для абонента: " + input);
             String inputSecond = scanner();
-            secondInputNumber(inputSecond);
+            if(!(peopleNumber.contains(inputSecond))){
+                secondInputNumber(inputSecond);
+            }else {
+                System.out.println("Телефон: " + input + " уже есть в телефонной книжке");
+            }
         }
         else {
             System.out.println("Имя: " + input + " уже есть в телефонной книжке");
@@ -64,7 +72,7 @@ public class Main {
     public static void print(){
         System.out.println("Список телефонных номеров: \n_______________");
         for (Map.Entry<Set<String>, Set<String>> entry : nameNumber.entrySet()) {
-
+            System.out.println(entry.getKey() + "" + entry.getValue());
         }
 
     }
