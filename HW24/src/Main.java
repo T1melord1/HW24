@@ -73,6 +73,7 @@ public class Main {
         System.out.println("Список телефонных номеров: \n_______________");
         for (Map.Entry<Set<String>, Set<String>> entry : nameNumber.entrySet()) {
             System.out.println(entry.getKey() + "" + entry.getValue());
+//
         }
 
     }
