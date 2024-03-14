@@ -37,7 +37,6 @@ public class Main {
             System.out.println("Введите имя человека для абонента: " + input);
             String inputSecond = scanner();
             if(!(peopleName.contains(inputSecond) )){
-                peopleNumber.add(input);
                 secondInputName(inputSecond, input);
             }  else {
                 System.out.println("Имя: " + input + " уже есть в телефонной книжке");
