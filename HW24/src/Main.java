@@ -8,8 +8,8 @@ public class Main {
     private static final Set<String> peopleName = new TreeSet<>();
     private static final Set<String> peopleNumber = new TreeSet<>();
     private static final Map<Set<String>, Set<String>> nameNumber = new HashMap<>();
-    private static final String correctNumber = "\\d+";
-    private static final String correctName = "[А-я]+";
+    private static final String CORRECT_NUMBER_REGEX = "\\d+";
+    private static final String CORRECT_NAME_REGEX = "[А-я]+";
     public static void main(String[] args) {
         boolean run = true;
         nameNumber.put(peopleName,peopleNumber);
@@ -19,9 +19,9 @@ public class Main {
         }
     }
     public static void nameOrNumber(String input){
-        if(input.matches(correctNumber)){
+        if(input.matches(CORRECT_NUMBER_REGEX)){
             firstNumber(input);
-        }else if(input.matches(correctName)){
+        }else if(input.matches(CORRECT_NAME_REGEX)){
             firstName(input);
 
         }else {
@@ -34,12 +34,12 @@ public class Main {
     public static void firstNumber(String input){
         if(!(peopleNumber.contains(input))){
             System.out.println("Такого номера в телефонной книге нет и был добавлен");
-            peopleNumber.add(input);
             System.out.println("Введите имя человека для абонента: " + input);
             String inputSecond = scanner();
-            if(!(peopleName.contains(inputSecond))){
-            secondInputName(inputSecond);
-            }else {
+            if(!(peopleName.contains(inputSecond) )){
+                peopleNumber.add(input);
+                secondInputName(inputSecond, input);
+            }  else {
                 System.out.println("Имя: " + input + " уже есть в телефонной книжке");
             }
         }
@@ -51,11 +51,10 @@ public class Main {
     public static void firstName(String input){
         if(!(peopleName.contains(input))){
             System.out.println("Такого имени в телефонной книге нет и было добавлено");
-            peopleName.add(input);
             System.out.println("Введите номер человека для абонента: " + input);
             String inputSecond = scanner();
             if(!(peopleNumber.contains(inputSecond))){
-                secondInputNumber(inputSecond);
+                secondInputNumber(inputSecond, input);
             }
              else {
                 System.out.println("Телефон: " + input + " уже есть в телефонной книжке");
@@ -66,13 +65,22 @@ public class Main {
         }
     }
 
-        public static void secondInputName(String secondInput){
-            peopleName.add(secondInput);
-            System.out.println("Контакт сохранён!");
-
-        }    public static void secondInputNumber(String secondInput){
+        public static void secondInputName(String secondInput, String input){
+            if (!(secondInput.matches(CORRECT_NAME_REGEX))) {
+                System.out.println("Не является именем человека");
+            }else {
+                peopleName.add(secondInput);
+                peopleName.add(input);
+                System.out.println("Контакт сохранён!");
+            }
+        }    public static void secondInputNumber(String secondInput, String input){
+        if (!(secondInput.matches(CORRECT_NUMBER_REGEX))) {
+            System.out.println("Не является номером человека");
+        }else {
             peopleNumber.add(secondInput);
+            peopleName.add(input);
             System.out.println("Контакт сохранён!");
+        }
         }
 
     public static void print(){
