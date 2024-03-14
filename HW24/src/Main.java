@@ -84,10 +84,13 @@ public class Main {
 
     public static void print(){
         System.out.println("Список телефонных номеров: \n_______________");
-        for (Map.Entry<Set<String>, Set<String>> entry : nameNumber.entrySet()) {
-            System.out.println(entry.getKey() + "" + entry.getValue());
-//
+        for (String s : peopleName) {
+            System.out.println(s);
         }
+        for (String b : peopleNumber) {
+            System.out.println(b);
+        }
+
 
     }
     public static String start(){
