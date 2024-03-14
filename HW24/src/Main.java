@@ -1,4 +1,8 @@
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.Scanner;
 
 public class Main {
     private static final Set<String> peopleName = new TreeSet<>();
@@ -10,7 +14,8 @@ public class Main {
         boolean run = true;
         nameNumber.put(peopleName,peopleNumber);
         while (run){
-            start();
+            if (start().equalsIgnoreCase("LEAVE"))
+                run = false;
         }
     }
     public static void nameOrNumber(String input){
@@ -77,11 +82,13 @@ public class Main {
         }
 
     }
-    public static void start(){
+    public static String start(){
+        boolean run = true;
         System.out.println("""
                     Choose what you want:
                      1. Добавить человека в записную книжку
-                     LIST. If you want to print number book""");
+                     LIST. If you want to print number book
+                     LEAVE. If you want to leave from program""");
         String b = scanner();
         if (b.equals("1")){
             System.out.println("Введите номер или имя человека");
@@ -95,5 +102,8 @@ public class Main {
             System.out.println("Введено не 1 или LIST");
             System.out.println("________________________________");
         }
+    return b;
     }
+
+
 }
