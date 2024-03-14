@@ -8,7 +8,7 @@ public class Main {
     private static final Set<String> peopleName = new TreeSet<>();
     private static final Set<String> peopleNumber = new TreeSet<>();
     private static final Map<Set<String>, Set<String>> nameNumber = new HashMap<>();
-    private static final String CORRECT_NUMBER_REGEX = "\\d+";
+    private static final String CORRECT_NUMBER_REGEX = "\\d{12}|\\d{9}";
     private static final String CORRECT_NAME_REGEX = "[А-я]+";
     public static void main(String[] args) {
         boolean run = true;
@@ -69,7 +69,7 @@ public class Main {
                 System.out.println("Не является именем человека");
             }else {
                 peopleName.add(secondInput);
-                peopleName.add(input);
+                peopleNumber.add(input);
                 System.out.println("Контакт сохранён!");
             }
         }    public static void secondInputNumber(String secondInput, String input){
