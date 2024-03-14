@@ -56,7 +56,8 @@ public class Main {
             String inputSecond = scanner();
             if(!(peopleNumber.contains(inputSecond))){
                 secondInputNumber(inputSecond);
-            }else {
+            }
+             else {
                 System.out.println("Телефон: " + input + " уже есть в телефонной книжке");
             }
         }
@@ -83,7 +84,6 @@ public class Main {
 
     }
     public static String start(){
-        boolean run = true;
         System.out.println("""
                     Choose what you want:
                      1. Добавить человека в записную книжку
